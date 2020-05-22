@@ -28,20 +28,24 @@ app.post("/api/quotes", (req, res) => {
     status: "active",
     link: `/del/${req.body.id}`,
   };
-  // if (!newquote.id || !newquote.Task || !newquote.Content) {
-  //   return res.status(400).json({ Msg: "Include an id, Task and Content" });
-  // }
-  // else {
-  quotes.forEach((quote) => {
-    if (quote.id == parseInt(req.body.id)) {
-      quote.Task == req.body.Task ? req.body.Task : quote.Task;
-      quote.Content == req.body.Content ? req.body.Content : quote.Content;
+ 
+    if (quotes.some((quote) => {return quote.id == newquote.id})) {
+      quotes.forEach((quote, i) => {
+        if(quote.id==newquote.id){
+        quote.Task = req.body.Task ? req.body.Task : quote.Task;
+        quote.Content = req.body.Content ? req.body.Content : quote.Content;
+        }
+      })
     }
-    quotes.push(newquote);
+  else{
+      console.log('rat')
+      quotes.push(newquote);
+    }
+    res.redirect("/api/quotes");
   })
      
-  res.redirect("/api/quotes");
-})
+
+
 // });
 //prod.liveshare.vsengsaas.visualstudio.com/join?8C1EDF7363658C3EE06A9ACB993940E52925
 
