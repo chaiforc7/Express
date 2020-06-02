@@ -34,13 +34,19 @@ module.exports = function (passport) {
        
         done(null, user.Email)
     })
-    passport.deserializeUser(async (user, done) => {
+    passport.deserializeUser(async (Email, done) => {
+        console.log(Email,'rat')
+        try {
+            let person = await prisma.users.findOne({
+                where:{
+                    Email:Email
+                }
+            })
+    
+            done(null,person)
+        } catch (error) {
+            done(error)
+        }
         
-        let person = await prisma.users.findOne({
-            where:{
-                email:user.Email
-            }
-        })
-        done(err,person)
         })
     }
