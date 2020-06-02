@@ -3,14 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  
   "dependencies": {
+    "@prisma/client": "^2.0.0-beta.6",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
+    "express-session": "^1.17.1",
     "mysql": "^2.18.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@prisma/cli": "^2.0.0-beta.6"
+  },
   "scripts": {
     "start": "node index"
   },

@@ -1,0 +1,64 @@
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-dark navbar-expand-md fixed bg-dark mb-5" data-aos="slide-down" data-aos-duration="250"
+        data-aos-offset="20" data-aos-delay="50" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand shadow-sm" href="#page-top">
+                <strong>TODO APP</strong></a><button data-toggle="collapse" data-target="#navbarResponsive"
+                class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" data-aos="fade-down" data-aos-duration="250" data-aos-offset="20"
+                    data-aos-delay="50"></i></button>
+            <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive"
+                style="margin-right: 0px;width: 400px;">
+
+                <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
+                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 500px;padding-left: 10px;margin-right: -150px;">
+                    <li class="nav-item" role="presentation"></li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/user/dashboard" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Home</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/user/Todo" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">TodoList</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/user/Quotes" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Quotes</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="/user/Logout" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Logout</a>
+                </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container bg-info align-items-center m-auto" id="container" style="border-radius: 20px">
+        <div class="container-fluid m-auto" id="header">
+            <h2 class="text-center p-3">Daily Quotes</h2>
+            <p class="text-center p-2">A Word is Enough for the Wise</p>
+    
+    
+            <p class=" p-1">Get your daily quotes to lead the day</p>
+    
+            <h6 class=" p-1">Click the button for your quotes</h6>
+            <span><button class="btn btn-default "data-toggle="tooltip"
+                        data-placement="top" title="Click the button for Your quote " id="button" onClick={getQuote} 
+                        style="background-color: rgb(145, 200, 245);"
+    >
+                Quote</button></span>
+        </div>
+        <div class="container" id="quote">
+            <p>{{content}}</p>
+            <hr />
+            <i>{{author}}</i>
+        </div>
+    </div>
+
+   
+
+    
+
+
+    

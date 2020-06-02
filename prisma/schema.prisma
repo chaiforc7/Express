@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource mysql {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model quotes {
+  Content String
+  Email   String?
+  id      Int     @id
+  link    String
+  Task    String
+  users   users?  @relation(fields: [Email], references: [Email])
+
+  @@index([Email], name: "Email")
+}
+
+model users {
+  Email     String   @id
+  Name      String?
+  Password  String?
+  Password2 String?
+  quotes    quotes[]
+}

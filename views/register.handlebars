@@ -1,0 +1,65 @@
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-dark navbar-expand-md fixed bg-dark mb-5" data-aos="slide-down" data-aos-duration="250"
+        data-aos-offset="20" data-aos-delay="50" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand shadow-sm" href="#page-top">
+                <strong>TODO APP</strong></a><button data-toggle="collapse" data-target="#navbarResponsive"
+                class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" data-aos="fade-down" data-aos-duration="250" data-aos-offset="20"
+                    data-aos-delay="50"></i></button>
+            <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive"
+                style="margin-right: 0px;width: 400px;">
+
+                <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
+                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 500px;padding-left: 10px;margin-right: -250px;">
+                    <li class="nav-item" role="presentation"></li>
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Register"
+                            style="padding: 16.5px 15px;font-size: 15px;width: 120px;">Register</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Login"
+                            style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Login</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<div class="row mt-5 pt-5">
+    <div class="col-md-5 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3">
+                <i class="fas fa-user-plus"></i> Register
+            </h1>
+            {{> error}}
+            <form action="/Register" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="name" id="name" name="name" class="form-control" value="{{name}}"  placeholder="Enter Name" required   />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" value="{{email}}" placeholder="Enter Email" required/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Create Password" /required>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" id="password2" name="password2" class="form-control"
+                        placeholder="Confirm Password" required/>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Register
+                </button>
+            </form>
+            <p class="lead mt-4">Have An Account? <a href="/user/Login">Login</a></p>
+        </div>
+    </div>
+</div>
