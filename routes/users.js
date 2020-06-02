@@ -64,19 +64,27 @@ router.get("/Todo",  (req, res) => {
 
 async function Todo(req, res, user) {
   const { id, Task, Content } = req.body;
+  console.log(req.user)
   await prisma.quotes.create({
     data: {
       id: parseInt(req.body.id),
       Task: req.body.Task,
       Content: req.body.Content,
       link:`/del/${req.body.id}`,
-      Email: req.user.Email
-    },
+      users:{
+        connect:{
+          Email:  req.user.Email
+        }
+      }
+    }
   });
+  res.redirect('/user/Todo')
 }
 
-router.post("/Todo", (req, res) => {  
-  Todo(req, res, user)
+router.post("/Todo", (req, res,next) => {  
+ 
+  
+  Todo(req, res)
     .catch((e) => {
       throw e;
     })
