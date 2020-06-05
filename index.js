@@ -28,7 +28,7 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: { secure: true },
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 600000 },
   })
 );
 
@@ -42,6 +42,8 @@ app.use(flash());
  
 app.use("/", require('./routes/routes'))
 app.use("/user", require("./routes/users"));
+
+app.use(express.static("public"));
 
 const PORT = 3000;
 

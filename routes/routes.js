@@ -84,8 +84,6 @@ router.post("/Login", (req, res, next) => {
   const {email, password } = req.body;
   passport.authenticate('local',
     (err, user, info) => {
-      console.log(user);
-      console.log(password, user.Password)
       if (err) {
         error.push({ msg: "You are not Registered" });
         res.render("login", {
@@ -106,7 +104,7 @@ router.post("/Login", (req, res, next) => {
           if (err) {
             return next(err);
           }
-          return res.redirect('/user/Todo');
+          return res.redirect('/user/dashboard');
       
         })
       }

@@ -7,21 +7,32 @@ datasource mysql {
   url      = env("DATABASE_URL")
 }
 
-model quotes {
-  Content String
+model posts {
+  Content    String?
+  Created_at DateTime? @default(now())
+  Email      String?
+  id         String    @id @default(cuid())
+  Title      String?
+  users      users?    @relation(fields: [Email], references: [Email])
+
+  @@index([Email], name: "Email")
+}
+
+model todo {
+  Content String?
   Email   String?
-  id      Int     @id
-  link    String
-  Task    String
+  id      String  @id @default(cuid())
+  Task    String?
   users   users?  @relation(fields: [Email], references: [Email])
 
   @@index([Email], name: "Email")
 }
 
 model users {
-  Email     String   @id
+  Email     String  @id
   Name      String?
   Password  String?
   Password2 String?
-  quotes    quotes[]
+  posts     posts[]
+  todo      todo[]
 }

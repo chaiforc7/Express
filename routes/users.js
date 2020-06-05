@@ -6,28 +6,24 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const { ensureAuthenticated } = require('../config/auth');
+const async = require("express-async-await");
 
-router.get("/dashboard",  (req, res) => {
-  res.render("welcome");
+
+//dashboard
+router.get("/dashboard", ensureAuthenticated, (req, res) => {
+  res.render("welcome", {
+    Name: req.user.Name,
+  });
 });
 
-router.get("/quotes",  (req, res, next) => {
-  // async function getQuote() {
-  //   const response = await fetch("https://api.quotable.io/random")
-  //   const data = await response.json()
-  //   const { content, author } = data;
-  // }
-  // getQuote()
-  //   .catch(err => console.log(err))
-  //   .then(res => {
-  //     res.render('quote', {
-  //       content: content,
-  //       author: author
-  //   })
-  // })
+//quotes
+router.get("/quotes", ensureAuthenticated, (req, res, next) => {  
+
   res.render("quotes");
-});
+  }
+)
 
+//Logout
 router.get("/Logout", (req, res) => {
   req.logOut();
   req.flash("success_msg", "Logout successful");
@@ -35,22 +31,25 @@ router.get("/Logout", (req, res) => {
 });
 
 //prisma get fxn
-async function main(res, user) {
-  const qoutes = await prisma.quotes
-    .findMany();
-  res.render("Todo", {
-      Title: "Todo List",
-      data: qoutes,
+async function main(req, res, user) {
+  const todos = await prisma.todo
+    .findMany({
+      where: {
+        Email: req.user.Email
+      }
     });
-    
+  
+  res.render("Todo", {
+    Title: "Todo List",
+    data: todos
+  });   
+  
 };
-    
- 
-    
+
 
 // prisma get
-router.get("/Todo",  (req, res) => {
-  main(res)
+router.get("/Todo", ensureAuthenticated,  (req, res) => {
+  main(req, res)
     .catch(e => {
       throw e
     })
@@ -60,17 +59,14 @@ router.get("/Todo",  (req, res) => {
 });
 
 
-//prisma post
+//prisma Todo post
 
 async function Todo(req, res, user) {
-  const { id, Task, Content } = req.body;
-  console.log(req.user)
-  await prisma.quotes.create({
+  const { Task, Content } = req.body;
+  await prisma.todo.create({
     data: {
-      id: parseInt(req.body.id),
-      Task: req.body.Task,
-      Content: req.body.Content,
-      link:`/del/${req.body.id}`,
+      Task: Task,
+      Content: Content,
       users:{
         connect:{
           Email:  req.user.Email
@@ -78,7 +74,7 @@ async function Todo(req, res, user) {
       }
     }
   });
-  res.redirect('/user/Todo')
+ res.redirect('/user/Todo') 
 }
 
 router.post("/Todo", (req, res,next) => {  
@@ -96,18 +92,20 @@ router.post("/Todo", (req, res,next) => {
 
 
 //delete fxn
-async function Delete(req, res) {
-  await prisma.quotes.delete({
+async function Delete(req, res, user) { 
+  await prisma.todo.delete({
     where: {
-      id: parseInt(req.params.id), 
+     
+      id: req.params.id,
     }
   });
-  res.redirect("/"); 
+   
+  res.redirect("/user/Todo");
 }
 
 //prisma delete
-router.get("/del/:id", async (req, res) => {
-  await Delete(req, res)
+router.get("/del/:id",  (req, res, user) => {
+   Delete(req, res, user)
     .catch((e) => {
       throw e;
     })
@@ -116,5 +114,61 @@ router.get("/del/:id", async (req, res) => {
     });
 });
 
+//Blog post fxn
+async function Bloget(req, res, user) {
+  const Posts = await prisma.posts
+    .findMany({
+      where: {
+        Email: req.user.Email
+      }
+    });
+  
+  res.render('posts', {
+    Name: req.user.Name,
+    data: Posts
+  })  
+  
+};
+router.get('/Blog', ensureAuthenticated, (req, res, next) => {
+ Bloget(req, res)
+   .catch((e) => {
+     throw e;
+   })
+   .finally(async () => {
+     await prisma.disconnect();
+   });
+})
+  
+
+
+//prisma blog post
+
+async function Blogpost(req, res, user) {
+  const { Title, Content } = req.body;
+  await prisma.posts.create({
+    data: {
+      Title: Title,
+      Content: Content,
+      users:{
+        connect:{
+          Email:  req.user.Email
+        }
+      }
+    }
+  });
+ res.redirect('/user/Blog') 
+}
+
+router.post("/Blog", (req, res,next) => {  
+ 
+  
+  Blogpost(req, res)
+    .catch((e) => {
+      throw e;
+    })
+    .finally(async () => {
+      await prisma.disconnect();
+    })
+});
 
 module.exports = router;

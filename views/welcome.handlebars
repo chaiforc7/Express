@@ -1,6 +1,7 @@
 <div class="container-fluid p-0">
-    <nav class="navbar navbar-dark navbar-expand-md fixed bg-dark mb-5" data-aos="slide-down" data-aos-duration="250"
-        data-aos-offset="20" data-aos-delay="50" id="mainNav">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top " data-aos="slide-down" data-aos-duration="250"
+        data-aos-offset="20" data-aos-delay="50" id="mainNav"
+        style="filter: blur(0px) contrast(99%) hue-rotate(0deg) invert(0%) saturate(67%) sepia(0%);background-color: transparent;">
         <div class="container">
             <a class="navbar-brand shadow-sm" href="#page-top">
                 <strong>TODO APP</strong></a><button data-toggle="collapse" data-target="#navbarResponsive"
@@ -12,22 +13,26 @@
                 style="margin-right: 0px;width: 400px;">
 
                 <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
-                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 500px;padding-left: 10px;margin-right: -150px;">
+                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 500px;padding-left: 10px;margin-right: -50px;">
                     <li class="nav-item" role="presentation"></li>
 
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="/user/dashboard"
-                            style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Home</a>
+                        <a class="nav-link text-light" href="/user/dashboard"
+                            style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Home</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="/user/Todo"
-                            style="padding: 16.5px 15px;font-size: 15px;width: 100px;">TodoList</a>
+                        <a class="nav-link text-light" href="/user/Blog"
+                            style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Blog</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="/user/Quotes" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Quotes</a>
+                        <a class="nav-link text-light" href="/user/Todo"
+                            style="padding: 7.5px 15px;font-size: 15px;width: 100px;">TodoList</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="/user/Logout" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Logout</a>
+                        <a class="nav-link text-light" href="/user/Quotes" style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Quotes</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-light" href="/user/Logout" style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Logout</a>
                     </li>                   
 
                 </ul>
@@ -36,16 +41,16 @@
     </nav>
 
 
-<header class="pulse animated masthead" style="background-image: url('/image/header-bg.jpg'); height: 650px;">
-    <div class="container">
-        <h1>Hello {{Name}}</h1>
-        <div class="intro-text mb-5" style="padding-top: 50px;"><span class="bounce animated"
+<header class="pulse animated masthead container-fluid pt-5" style="background-image: url('/header-bg.jpg'); height:100vh; background-size:contain">
+    <div class="container pt-5 mt-5">
+        <h1 class="text-light pt-5"><i>Hello</i> {{Name}}</h1>
+        <div class="intro-text mb-5 text-light" style="padding-top: 50px;"><span class="bounce animated text-light"
                 style="font-size: 25PX;letter-spacing: 2px; margin-bottom: 50px;">Welcome To
-                <strong class="mb-5">GREENFONTS' MEDIA RESOURCES</strong></span>
+                <strong class="mb-5 text-light">GREENFONTS' MEDIA RESOURCES</strong></span>
             <div class="intro-lead-in"></div>
-            <div class="intro-heading text-uppercase mb-5"><span >It's Nice To Meet
-                    You</span></div><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button"
-                data-bs-hover-animate="shake" href="/Todo">My Tasks</a>
+            <div class="intro-heading text-uppercase mb-5 text-light mt-4"><span >It's Nice To Meet
+                    You</span></div><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger text-light" role="button"
+                data-bs-hover-animate="shake" href="/user/Todo">My Tasks</a>
         </div>
     </div>
 </header>

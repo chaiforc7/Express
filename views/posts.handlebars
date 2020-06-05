@@ -1,4 +1,4 @@
-<div class="container-fluid p-0">
+<div class="container-fluid p-0 mb-5">
     <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark" data-aos="slide-down" data-aos-duration="250"
         data-aos-offset="20" data-aos-delay="50" id="mainNav"
         style="filter: blur(0px) contrast(99%) hue-rotate(0deg) invert(0%) saturate(67%) sepia(0%);background-color: transparent;">
@@ -10,10 +10,10 @@
                 <i class="fa fa-bars" data-aos="fade-down" data-aos-duration="250" data-aos-offset="20"
                     data-aos-delay="50"></i></button>
             <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive"
-                style="margin-right: 0px;width: 400px;">
+                style="width: 800px;">
 
                 <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
-                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 500px;padding-left: 10px;margin-right: -100px;">
+                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 600px;padding-left: 10px;margin-right: -100px;">
                     <li class="nav-item" role="presentation"></li>
 
                     <li class="nav-item" role="presentation">
@@ -41,42 +41,52 @@
             </div>
         </div>
     </nav>
+</div>
 
-
-<div class="container bg-info pt-3 mt-3">
-    <div class="container m-auto pb-2 ">
-        <h1 class="pt-4 mb-2 text-center larger">{{Title}}</h1>
-        <h3 class="text-center mt-2">Set up your daily routine and tasks</h3>
+<div class="row m-auto mt-5 pt-5">
+    <div class="col-md-8 ">
+    <ul class="posts">
+        {{#each data}}
+        <li class="post">
+            <div class="profile-thumbnail">
+                <a href="">
+                    <img class="img-rounded profile-thumbnail" src="">
+                </a>
+            </div>
+            <div>{{this.Title}}</div>
+            <div class="post-date"> {{this.Created_at}}</div>
+            <div class="post-author">
+                {{Name}}
+            </div>
+            
+            <div class="post-body">{{this.Content}}</div>
+        </li>
+        {{/each}}
+    </ul>
     </div>
 
-    <form action="/user/Todo" method="POST" class="container  mt-2">
-        {{!-- <div class="form-group">
-            <label for="id">S/N</label>
-            <input type="text" name="id" class="form-control " required>
-        </div> --}}
-        <div class="form-group">
-            <label for="name">Task</label>
-            <input type="text" name="Task" class="form-control" >
+
+    <div class="col-md-3 ml-5" style="border: 1px solid rgb(221, 221, 221);">
+        <div class="container pt-2">
+            <h2 class="p-2"><i>{{Name}}</i><i class="fas fa-user pl-2"></i></h2>
+            <p class="text-center p-1">Talk more about yourself <br>and what's on your mind</p>
         </div>
-        <div class="form-group ">
-            <label for="content">Content</label>
-            <input type="text" name="Content" class="form-control" >
+        <div class="container p-3">
+            <h4>Create and edit your Post <i class="fas fa-edit"></i></h4>
+
         </div>
-        <input type="submit" value="Add Task" class="btn btn-light text-dark col-sm-2">
-    </form>
-    <div class="mt-2 pt-2 pb-4 mb-5">
-        <h2 class="text-center mt-3 pb-3">Tasks</h2>
-            <div class="list-group">  
-                 {{#each data}}
-               <div class="list-group-item d-flex-inline pb-2 bg-transparent">
-                    <span class="d-inline-block col-sm-3"> {{this.Task}}</span>
-                    <span class="d-inline-block col-sm-7"> {{this.Content}}</span>
-                    <a href='del/{{this.id}}'  class="bg-primary p-1">
-                        <button class="btn  col-sm-1">Delete</button>
-                    </a>
-                </div>
-                {{/each}}
+
+        <form action="/user/Blog" method="POST" class="container  mt-2 p-3" >
+            <div class="form-group">
+                <label for="name">Title</label>
+                <input type="text" name="Title" class="form-control" placeholder="Post title" required>
             </div>
-        </div>
-    
+            <div class="form-group ">
+                <label for="content">Content</label>
+                <textarea name="Content"  cols="30" rows="10" class="form-control" placeholder="What is on your mind?" required></textarea>
+            </div>
+            <input type="submit" value="Post" class="btn btn-info  text-dark col-sm-12">
+        </form>
+    </div>
+
 </div>

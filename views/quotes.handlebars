@@ -1,6 +1,7 @@
 <div class="container-fluid p-0">
-    <nav class="navbar navbar-dark navbar-expand-md fixed bg-dark mb-5" data-aos="slide-down" data-aos-duration="250"
-        data-aos-offset="20" data-aos-delay="50" id="mainNav">
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark" data-aos="slide-down" data-aos-duration="250"
+        data-aos-offset="20" data-aos-delay="50" id="mainNav"
+        style="filter: blur(0px) contrast(99%) hue-rotate(0deg) invert(0%) saturate(67%) sepia(0%);background-color: transparent;">
         <div class="container">
             <a class="navbar-brand shadow-sm" href="#page-top">
                 <strong>TODO APP</strong></a><button data-toggle="collapse" data-target="#navbarResponsive"
@@ -12,27 +13,34 @@
                 style="margin-right: 0px;width: 400px;">
 
                 <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
-                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 500px;padding-left: 10px;margin-right: -150px;">
+                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 500px;padding-left: 10px;margin-right: -100px;">
                     <li class="nav-item" role="presentation"></li>
 
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="/user/dashboard" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Home</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="/user/Todo" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">TodoList</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="/user/Quotes" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Quotes</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="/user/Logout" style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Logout</a>
-                </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-light" href="/user/dashboard"
+                            style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Home</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-light" href="/user/Blog"
+                            style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Blog</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-light" href="/user/Todo"
+                            style="padding: 7.5px 15px;font-size: 15px;width: 100px;">TodoList</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-light" href="/user/Quotes"
+                            style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Quotes</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link text-light" href="/user/Logout"
+                            style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Logout</a>
+                    </li>
 
                 </ul>
             </div>
         </div>
     </nav>
-
 
     <div class="container bg-info align-items-center m-auto" id="container" style="border-radius: 20px">
         <div class="container-fluid m-auto" id="header">
@@ -43,16 +51,15 @@
             <p class=" p-1">Get your daily quotes to lead the day</p>
     
             <h6 class=" p-1">Click the button for your quotes</h6>
-            <span><button class="btn btn-default "data-toggle="tooltip"
-                        data-placement="top" title="Click the button for Your quote " id="button" onClick={getQuote} 
-                        style="background-color: rgb(145, 200, 245);"
-    >
-                Quote</button></span>
+            <span>
+                <button class="btn btn-default mb-3" data-toggle="tooltip" data-placement="top"
+                    title="Click the button for Your quote " id="button" style="background-color: rgb(145, 200, 245);">
+                    Quote</button>
+            </span>
+            
         </div>
         <div class="container" id="quote">
-            <p>{{content}}</p>
-            <hr />
-            <i>{{author}}</i>
+        
         </div>
     </div>
 
