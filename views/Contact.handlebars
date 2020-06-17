@@ -1,0 +1,139 @@
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-dark navbar-expand-md fixed bg-dark mb-5" data-aos="slide-down" data-aos-duration="250"
+        data-aos-offset="20" data-aos-delay="50" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand shadow-sm" href="#page-top">
+                <strong>TODO APP</strong></a><button data-toggle="collapse" data-target="#navbarResponsive"
+                class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fab fa-bars" data-aos="fade-down" data-aos-duration="250" data-aos-offset="20"
+                    data-aos-delay="50"></i></button>
+            <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive"
+                style="margin-right: 0px;width: 700px;">
+
+                <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
+                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 700px;padding-left: 10px;margin-right: -250px;">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Home" style="padding: 16.5px 15px;font-size: 15px;width: 120px;">Home</a>
+                   </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Blog" style="padding: 16.5px 15px;font-size: 15px;width: 120px;">Blog</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Contact" style="padding: 16.5px 15px;font-size: 15px;width: 120px;">Contact</a>
+                    </li>
+
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Register"
+                            style="padding: 16.5px 15px;font-size: 15px;width: 120px;">Register</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Login"
+                            style="padding: 16.5px 15px;font-size: 15px;width: 100px;">Login</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pulse animated bg-light" id="team" style="padding-bottom: 100px;">
+        <div class="container">
+            <h1 class="text-center" style="margin-top: -30px;margin-bottom: 20px;">Our Team</h1>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member"><img class="rounded-circle mx-auto" src="/1.jpg">
+                        <h4>Kay Garland</h4>
+                        <p class="text-muted">Lead Designer</p>
+                        <ul class="list-inline social-buttons">
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member"><img class="rounded-circle mx-auto" src="/2.jpg">
+                        <h4>Larry Parker</h4>
+                        <p class="text-muted">Lead Marketer</p>
+                        <ul class="list-inline social-buttons">
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>2813564
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member"><img class="rounded-circle mx-auto" src="/3.jpg">
+                        <h4>Diana Pertersen</h4>
+                        <p class="text-muted">Lead Developer</p>
+                        <ul class="list-inline social-buttons">
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" style="background-image:url('/map-image.png');">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-uppercase section-heading">Contact Us</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form id="contactForm" name="contactForm" novalidate="novalidate">
+                        <div class="form-row">
+                            <div class="col col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control" onchange="handleChange()" type="text" id="name" placeholder="Your Name *" name="Name" required>
+                                    <small class="form-text text-danger flex-grow-1 help-block lead"></small></div>
+                                <div class="form-group">
+                                    <input class="form-control" onchange="handleChange()" type="email" id="email" placeholder="Your Email *" name="Email" required>
+                                    <small class="form-text text-danger help-block lead"></small></div>
+                                <div class="form-group">
+                                    <input class="form-control"  type="tel" id="tel" onchange="handleChange()"
+                                    placeholder="Your Phone *"  name="Tel" required>
+                                    <small class="form-text text-danger help-block lead"></small></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control" onchange="handleChange()" 
+                                    name="Message" id="message" placeholder="Your Message *" 
+                                    required=""></textarea><small class="form-text text-danger help-block lead"></small></div>
+                            </div>
+                            <div class="col">
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div><a class="btn btn-primary btn-xl text-uppercase" 
+                                role="button" id="sendMessageButton" href="#" +target="_blank">Send Message</a></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="footer-basic" style="padding-bottom: 30px;padding-top: 30px;">
+        <footer>
+            <div class="social"><a data-toggle="tooltip" data-bs-tooltip="" data-placement="bottom" data-bs-hover-animate="bounce" href="#" title="Instagram Handle"><i class="icon ion-social-instagram"></i></a><a data-toggle="tooltip" data-bs-tooltip="" data-bs-hover-animate="bounce"
+                    href="#" title="Follow on SnapChat"><i class="icon ion-social-snapchat"></i></a><a data-toggle="tooltip" data-bs-tooltip="" data-bs-hover-animate="bounce" href="#" title="Follow us on Twitter"><i class="icon ion-social-twitter"></i></a>
+                <a
+                    data-toggle="tooltip" data-bs-tooltip="" data-bs-hover-animate="bounce" href="#" title="Like our facebook page"><i class="icon ion-social-facebook"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="index.html">Home</a></li>
+                <li class="list-inline-item"><a href="services.html">Services</a></li>
+                <li class="list-inline-item"></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright" style="font-size: 15px;">Greenfonts Media © 2020</p>
+        </footer>
+    </div>

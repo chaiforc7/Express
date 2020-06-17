@@ -1,5 +1,5 @@
-<div class="container-fluid p-0">
-    <nav class="navbar navbar-dark navbar-expand-md fixed bg-dark mb-5" data-aos="slide-down" data-aos-duration="250"
+<div class="container-fluid p-0 mb-5">
+    <nav class="navbar navbar-dark navbar-expand-md fixed bg-dark" data-aos="slide-down" data-aos-duration="250"
         data-aos-offset="20" data-aos-delay="50" id="mainNav"
         style="filter: blur(0px) contrast(99%) hue-rotate(0deg) invert(0%) saturate(67%) sepia(0%);background-color: transparent;">
         <div class="container">
@@ -9,8 +9,7 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars" data-aos="fade-down" data-aos-duration="250" data-aos-offset="20"
                     data-aos-delay="50"></i></button>
-            <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive"
-                style="margin-right: 0px;width: 700px;">
+            <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive" style="width: 700px;">
 
                 <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
                     style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 700px;padding-left: 10px;margin-right: -250px;">
@@ -41,31 +40,49 @@
             </div>
         </div>
     </nav>
+</div>
 
-    <div class="container bg-info align-items-center m-auto" id="container" style="border-radius: 20px">
-        <div class="container-fluid m-auto" id="header">
-            <h2 class="text-center p-3">Daily Quotes</h2>
-            <p class="text-center p-2">A Word is Enough for the Wise</p>
+
+
+<div class='col-md-7 m-auto'> {{> error}}</div>
+<div class="container">
     
     
-            <p class=" p-1">Get your daily quotes to lead the day</p>
-    
-            <h6 class=" p-1">Click the button for your quotes</h6>
-            <span>
-                <button class="btn btn-default mb-3" data-toggle="tooltip" data-placement="top"
-                    title="Click the button for Your quote " id="button" style="background-color: rgb(145, 200, 245);">
-                    Quote</button>
-            </span>
-            
-        </div>
-        <div class="container" id="quote">
-        
-        </div>
+    <h3 class="text-center mb-3">Edit your Profile</h3>
+
+<form  class="  card card-body col-md-7 m-auto" action="/user/EditProfile" method="POST" enctype="application/x-www-form-urlencoded">
+    <div class="form-group">
+        <label for="name">UserName</label>
+        <input type="name" id="name" name="Name" class="form-control" value="{{Name}}" placeholder="Enter your UserName"
+            required />
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="Email" class="form-control" value="{{Email}}" placeholder="Enter Email"
+            required />
     </div>
 
-   
+    <div class="form-group">
+        <label for="email">Occupation</label>
+        <input type='text' id="Ocupation" name="Occupation" class="form-control" value="{{Occupation}}" placeholder="Occupation" required />
+    </div>
+    <div class="form-group">
+        <label for="Skills">Skills</label>
+        <input type="text" name="Skills" class="form-control" required />
+    </div>
 
-    
-
-
-    
+    <div class="form-group">
+        <label for="Hobbies">Hobbies</label>
+        <input type="text" id="Hobbies" name="Hobbies" class="form-control" placeholder="What you like doing (Hobbies)"
+            required />
+    </div>
+    <div class="form-group">
+        <label for="AboutMe">Description</label>
+        <textarea name="About" class="form-control" placeholder="Descirbe yourself in not less than 200 words"
+            required ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">
+        Submit
+    </button>
+</form>
+</div>

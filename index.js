@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const flash = require('connect-flash');
 const session = require("express-session");
 const { ensureAuthenticated } = require('./config/auth');
-
+const fileUpload = require("express-fileupload");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const passport = require('passport')
@@ -39,7 +39,8 @@ app.use(passport.session())
 //connect flash
 app.use(flash());
 
- 
+
+
 app.use("/", require('./routes/routes'))
 app.use("/user", require("./routes/users"));
 

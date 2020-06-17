@@ -9,8 +9,7 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars" data-aos="fade-down" data-aos-duration="250" data-aos-offset="20"
                     data-aos-delay="50"></i></button>
-            <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive"
-                style="width: 700px;">
+            <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive" style="width: 700px;">
 
                 <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
                     style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 700px;padding-left: 10px;margin-right: -250px;">
@@ -43,17 +42,15 @@
     </nav>
 </div>
 
-<div class="row m-auto mt-1 pt-1">
-   
-        
-               
+<div class="row">
     <div class="col-md-8 mb-5 pb-5">
         {{#each data}}
         <article class="blog-item mt-3 mb-5 " style="border: 1px solid bisque;">
             <span class="row p-3">
-
-                <a href="" class="col-md-3 " >
-                    <img class="pull-left img-responsive-rounded ml-2 mb-2" style="width: 90%; height:150px" src='/{{this.Avatar}}'>
+    
+                <a href="" class="col-md-3 ">
+                    <img class="pull-left img-responsive-rounded ml-2 mb-2" style="width: 90%; height:150px"
+                        src='/{{this.Avatar}}'>
                     <p class="post-author pt-3 text-center ">
                         {{this.Author}}
                     </p>
@@ -62,57 +59,60 @@
                     <Span class="d-inline-flex">
                         <h2 style="width: 540px;"><a href="#">{{this.Title}}
                             </a></h2>
-                        
+    
                     </Span>
-                    
+    
                     <h5 class="col-md-11">{{this.Content}} </h5>
                     <h5><a href="#">Learn more... </a></h5>
                     <div class="post-date"> Created {{this.Created_at}}</div>
-                   
-                    
-                                        
+    
+    
+    
                 </div>
                 {{#if current_user}}
-                   <div class="post-footer">          
+                <div class="post-footer">
                     helo
                     <a href="">
                         <span class="label label-primary">Edit</span>
                     </a>
-                               
-                  </div>
-                  {{/if}}
-
-            </span>
-               <div class="clearfix"></div>
-        </article>
-    {{/each}}
-    </div>
     
-
-
-    <div class="col-md-3 ml-3"  >
-        <div class="container pt-2" style="height:fit-content;border: 1px solid rgb(221, 221, 221);">
-           <div>
-            <h2 class="p-2"><i>{{Name}}</i><i class="fas fa-user pl-4"></i></h2>
-            <p class="text-center p-1">Talk more about yourself <br>and what's on your mind</p>
-        </div>
-        <div class="container p-3">
-            <h4>Create and edit your Post <i class="fas fa-edit"></i></h4>
-
-        </div>
-
-        <form action="/user/Blog" method="POST" class="container  mt-2 p-3" >
-            <div class="form-group">
-                <label for="name">Title</label>
-                <input type="text" name="Title" class="form-control" placeholder="Post title" required>
-            </div>
-            <div class="form-group ">
-                <label for="content">Content</label>
-                <textarea name="Content"  cols="30" rows="10" class="form-control" placeholder="What is on your mind?" required></textarea>
-            </div>
-            <input type="submit" value="Post" class="btn btn-info  text-dark col-sm-12">
-        </form>
-        </div>
+                </div>
+                {{/if}}
+    
+            </span>
+            <div class="clearfix"></div>
+        </article>
+        {{/each}}
     </div>
 
+
+    <div class=" col-md-3  border rounded-0 shadow-sm profile-box"
+        style="width: 100%; height:80vh; background-color: #ffffff;margin: 5px;">
+        <div class="text-center">
+            <img class="rounded-circle m-3 " src='/{{Avatar}}' width="100px" height="100px"
+                style="background-color: rgb(255,255,255);padding: 2px;"></div>
+    {{#each Profile}}
+       
+        <div class="text-center"style="height: 80px;">
+            <h4>{{this.Name}}</h4>
+            <p style="font-size: 12px;">Profile Description</p>
+        </div>
+        <div class="ml-1">
+            <p><b class="pr-2 mb-3">Email:</b> {{this.Email}}</p>
+            <p><b class="pr-2 mb-3">Occupation:</b> {{this.Occupation}}</p>
+            <p><b class="pr-2 mb-3">Skills:</b> {{this.Skills}}</p>
+            <p><b class="pr-2 mb-3">Hobbies:</b> {{this.Hobbies}}</p>
+        </div>
+        <div class="mb-4 pb-4">
+            {{this.About}}
+        </div>
+        {{/each}}
+            
+
+        <div >
+            <a class="btn btn-info bottom " style="width:150px" id="follow" href="/user/{{FollowChange}}/{{Author}}">{{FollowChange}} </a>
+        </div>
+       
+        
 </div>
+

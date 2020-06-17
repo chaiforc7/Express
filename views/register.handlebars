@@ -9,11 +9,23 @@
                 <i class="fa fa-bars" data-aos="fade-down" data-aos-duration="250" data-aos-offset="20"
                     data-aos-delay="50"></i></button>
             <div class="collapse navbar-collapse d-md-inline-block" id="navbarResponsive"
-                style="margin-right: 0px;width: 400px;">
+                style="margin-right: 0px;width: 700px;">
 
                 <ul class="nav navbar-nav d-md-inline-flex ml-auto text-uppercase"
-                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 500px;padding-left: 10px;margin-right: -250px;">
+                    style="margin: 0px 0px 0px 0px;margin-left: 0px;width: 700px;padding-left: 10px;margin-right: -250px;">
                     <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Home"
+                            style="padding: 16.5px 15px;font-size: 15px;width: 120px;">Home</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Blog"
+                            style="padding: 16.5px 15px;font-size: 15px;width: 120px;">Blog</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="/Contact"
+                            style="padding: 16.5px 15px;font-size: 15px;width: 120px;">Contact</a>
+                    </li>
 
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="/Register"
@@ -29,7 +41,6 @@
         </div>
     </nav>
 
-
 <div class="row mt-5 pt-5">
     <div class="col-md-5 m-auto">
         <div class="card card-body">
@@ -37,22 +48,27 @@
                 <i class="fas fa-user-plus"></i> Register
             </h1>
             {{> error}}
-            <form action="/Register" method="POST">
+            <form action="/Register" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="name" id="name" name="name" class="form-control" value="{{name}}"  placeholder="Enter Name" required   />
+                    <label for="name">UserName</label>
+                    <input type="name" id="name" name="name"  class="form-control" value="{{Name}}"  placeholder="Enter Name" required   />
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" value="{{email}}" placeholder="Enter Email" required/>
+                    <input type="email" id="email" name="email"  class="form-control" value="{{email}}" placeholder="Enter Email" required/>
+                </div>
+               
+                <div class="form-group">
+                    <label for="file">Profile Photo</label>
+                    <input type="file" name="avatar"  class="form-control" required />
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Create Password" /required>
+                    <input type="password" id="password"  name="password" class="form-control" placeholder="Create Password" required />
                 </div>
                 <div class="form-group">
                     <label for="password2">Confirm Password</label>
-                    <input type="password" id="password2" name="password2" class="form-control"
+                    <input type="password" id="password2"  name="password2" class="form-control"
                         placeholder="Confirm Password" required/>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
