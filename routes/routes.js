@@ -26,6 +26,7 @@ let storage = multer.diskStorage({
 
 let upload = multer({ storage: storage });
 router.get("/Register", (req, res) => {
+  req.session.is_Follow = false;
   res.render("register");
 });
 
@@ -89,7 +90,7 @@ router.post("/Register", upload.single('avatar'), (req, res) => {
                 .finally(async () => {
                   await prisma.disconnect();
                 }); 
-          req.session.is_Follow = false
+          
           res.redirect("/Login");
         }
         
@@ -142,11 +143,13 @@ router.get("/Login", (req, res, next) => {
 })
 
 router.get("/Home", (req, res, next) => {
+  req.session.is_Follow = false;
   res.render("Home");
 });
 
 
 router.get("/Contact", (req, res, next) => {
+  req.session.is_Follow = false;
   res.render("Contact");
 });
 

@@ -31,6 +31,7 @@ router.get("/quotes", ensureAuthenticated, (req, res, next) => {
 //Logout
 router.get("/Logout", (req, res) => {
   req.logOut();
+  req.session.is_Follow = false
   req.flash("success_msg", "Logout successful");
   res.redirect("/Login");
 });
@@ -65,7 +66,7 @@ router.get("/Todo", ensureAuthenticated,  (req, res) => {
 
 
 //prisma Todo post
-
+//so can you take me to what and where the problem is
 async function Todo(req, res, user) {
   const { Task, Content } = req.body;
   await prisma.todo.create({
@@ -133,13 +134,21 @@ async function Bloget(req, res, user) {
              posts: true
            }
          }
-       },
+         },
+       
      where: {
        Email: req.user.Email,
      },
-   })
+     })
   
-  // console.dir(users, { depth: null})
+//   req.user.Likes.forEach(element => {
+//    console.log(element.Email, element.Postid)
+//  })
+  // await prisma.likes.findMany({
+  //   where: {
+  //     Postid: req.post.id
+  //   }
+  // })
   let Posts = [];
    req.user.following.forEach(element => {
      Posts.push(element.posts)
@@ -475,7 +484,7 @@ async function UnFollowAuthor(req, res) {
   });
 }
 
-router.get('/Unfollow/:Author', ensureAuthenticated, (req, res, user) => {
+router.get('/Unfollow/:Email', ensureAuthenticated, (req, res, user) => {
   UnFollowAuthor(req, res)
     .catch((e) => {
       throw e;
@@ -485,4 +494,130 @@ router.get('/Unfollow/:Author', ensureAuthenticated, (req, res, user) => {
     });
 })
 
-module.exports = router;
+async function Like(req, res) {
+  const User = await prisma.likes.findMany({
+    where: {
+      AND: [
+        {
+          Postid: req.params.id
+        },
+        {
+          Email: req.user.Email
+        }
+      ]
+
+    }
+    
+  })
+  if (User.length != 0) {
+  const curentPost = await prisma.posts.findMany({
+      where: {
+        id: req.params.id,
+      },
+    });
+    let CurrentLike;
+    curentPost.forEach((element) => {
+      CurrentLike = element.PostLike - 1;
+      if (CurrentLike == 0) {
+        CurrentLike = null;
+      }
+    });
+  
+    await prisma.posts.updateMany({
+      where: {
+          id: req.params.id,
+        },
+      data: {
+            PostLike: CurrentLike,
+          },
+    });
+
+    await prisma.likes.deleteMany({
+      where: {
+        AND: [
+          {
+            Postid: req.params.id,
+          },
+          {
+            Email: req.user.Email,
+          },
+        ]
+      }
+    });
+    
+  } else {
+    await prisma.likes.create({
+      data: {
+        users: {
+          connect: {
+            Email: req.user.Email,
+          },
+        },
+        post: {
+          connect: {
+            id: req.params.id,
+          },
+        },
+      },
+    });
+
+    const curentPost = await prisma.posts.findMany({
+      where: {
+        id: req.params.id,
+      },
+    });
+    let CurrentLike;
+    curentPost.forEach((element) => {
+      CurrentLike = element.PostLike + 1;
+    });
+
+    await prisma.posts.updateMany({
+      where: {
+          id: req.params.id,
+        },
+          data: {
+            PostLike: CurrentLike,
+          },
+  
+    });    
+  }
+  res.redirect("/user/Blog");
+}
+
+router.get('/Like/:id/', ensureAuthenticated, async (req, res, user) => {
+  Like(req, res)
+    .catch((e) => {
+      throw e;
+    })
+    .finally(async () => {
+      await prisma.disconnect();
+    });
+})
+
+async function Comment(req, res) {
+  await prisma.comment.create({
+    data: {
+      users: {
+        connect: {
+          Email: req.user.Email,
+        },
+      },
+      Postid: req.params.id,
+      Comment: req.body.Comment,
+    },
+  });
+
+  res.redirect("/user/Blog");
+}
+
+router.post("/comment/:id/", ensureAuthenticated, async (req, res, user) => {
+  Comment(req, res)
+    .catch((e) => {
+      throw e;
+    })
+    .finally(async () => {
+      await prisma.disconnect();
+    });
+});
+
+module.exports = router

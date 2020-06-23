@@ -7,7 +7,23 @@ datasource mysql {
   url = "***"
 }
 
+model comment {
+  Comment String
+  Email   String?
+  id      String    @id @default(cuid())
+  Postid  String?
+  users   users?  @relation(fields: [Email], references: [Email])
+  @@index([Email], name: "Email")
+}
 
+model likes {
+  id     Int    @default(autoincrement())
+  Email  String? 
+  Postid String
+  post   posts @relation(fields:[Postid], references:[id])
+  users      users?    @relation(fields: [Email], references: [Email])
+  @@unique([Email,Postid])
+}
 
 model posts {
   Author     String?
@@ -17,16 +33,16 @@ model posts {
   Email      String?
   id         String    @id @default(cuid())
   Title      String?
-  users      users?    @relation(fields: [Email], references: [Email])
-
+   users      users?    @relation(fields: [Email], references: [Email])
+   Likes      likes[]
   @@index([Email], name: "Email")
 }
 
 model profile {
   About      String?
-  Email      String?
+  Email      String  @id
   Hobbies    String?
-  Name       String  @id
+  Name       String?
   Occupation String?
   Skills     String?
 }
@@ -37,18 +53,27 @@ model todo {
   id      String  @id @default(cuid())
   Task    String?
   users   users?  @relation(fields: [Email], references: [Email])
-
   @@index([Email], name: "Email")
 }
 
 model users {
-  Avatar     String?
-  Email      String  @id
+  Avatar    String?
+  Email     String    @id
+  Name      String?
   followedBy  users[]   @relation("UserFollows", references: [Email])
   following   users[]   @relation("UserFollows", references: [Email])
-  Name       String?
-  Password   String?
-  Password2  String?
+  Password  String?
+  Password2 String?
+  comment   comment[]
   posts      posts[]
   todo       todo[]
+  Likes      likes[]
 }
+
+
+
+
+
+
+
+
