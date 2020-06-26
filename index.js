@@ -11,6 +11,7 @@ const prisma = new PrismaClient();
 const passport = require('passport')
 
 app.engine("handlebars", exhbs());
+app.set('views', path.join(__dirname, 'views'))
 app.set("view engine", "handlebars");
 
 //passport config

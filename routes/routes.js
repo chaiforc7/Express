@@ -23,8 +23,8 @@ let storage = multer.diskStorage({
   },
 });
 
-
 let upload = multer({ storage: storage });
+
 router.get("/Register", (req, res) => {
   req.session.is_Follow = false;
   res.render("register");
@@ -141,7 +141,7 @@ router.get("/Login", (req, res, next) => {
   res.render("login");
 })
 
-router.get("/Home", (req, res, next) => {
+router.get("/", (req, res, next) => {
   req.session.is_Follow = false;
   res.render("Home");
 });
