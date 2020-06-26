@@ -54,7 +54,6 @@ router.post("/Register", upload.single('avatar'), (req, res) => {
     error.push({ msg: 'Password must be at least 8 characters' })
 
   }
-  console.log(password, password2)
   if (error.length > 0) {
     res.render('register',{
       error, 
@@ -158,7 +157,7 @@ async function BlogHome(req, res, user) {
   const Posts = await prisma.posts.findMany(); 
   
   Posts.forEach((element) => {
-    element.Created_at = moment(element.Created_at).fromNow();
+    element.created_at = moment(element.created_at).fromNow();
 
   });
   Posts.sort(element => element.Created_at)

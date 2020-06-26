@@ -25,7 +25,7 @@
                             style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Blog</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link text-light" href="/user/Todo"
+                        <a class="nav-link text-light" href="/user/TodoList"
                             style="padding: 7.5px 15px;font-size: 15px;width: 100px;">TodoList</a>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -53,26 +53,26 @@
             <span class="row p-1">
 
                 <a href="" class="col-md-3 " >
-                    <img class="pull-left img-responsive-rounded ml-2 mb-2" style="width: 90%; height:30vh" src='/{{this.Avatar}}'>
+                    <img class="pull-left img-responsive-rounded ml-2 mb-2" style="width: 90%; height:30vh" src='/{{this.avatar}}'>
                     <p class="post-author pt-3 text-center ">
-                        {{this.Author}}
+                        {{this.author}}
                     </p>
                 </a>
                 <div class="text post-body col-md-9 pt-2">
                     <Span class="d-inline-flex">
-                        <h2 style="width: 540px;"><a href="#">{{this.Title}}
+                        <h2 style="width: 540px;"><a href="#">{{this.title}}
                             </a></h2>
                         
                     </Span>
                     
-                    <h5 class="col-md-11">{{this.Content}} </h5>
+                    <h5 class="col-md-11">{{this.content}} </h5>
                     <h5><a href="#">Learn more... </a></h5>
-                    <div class="post-date"> Created {{this.Created_at}}</div>
+                    <div class="post-date"> Created {{this.created_at}}</div>
                     
                    <div class=" bottom mt-2 mb-0 p-2 m-1 ">
                        <a class=" col-xs-2 btn btn-light p-2 mb-2 " style="margin-right: 10px;" href="/user/Like/{{this.id}}"> <i class="fa fa-thumbs-o-up text-center pr-3"
-                        aria-hidden="true" style="color: blue; font-size:22px "></i>{{this.PostLike}}</a>
-                        <form action="/user/comment/{{this.Email}}" method="post"  class="row">
+                        aria-hidden="true" style="color: blue; font-size:22px "></i>{{this.postlike}}</a>
+                        <form action="/user/comment/{{this.id}}" method="post"  class="row">
                         <textarea class=" col-7 form-control mr-1 ml-1" placeholder="comment" 
                         style=" height:40px" name="Comment"></textarea>
                         <button class="col-xs-2 btn btn-info">comment</button>

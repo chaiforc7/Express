@@ -24,7 +24,7 @@
                             style="padding: 7.5px 15px;font-size: 15px;width: 100px;">Blog</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link text-light" href="/user/Todo"
+                        <a class="nav-link text-light" href="/user/TodoList"
                             style="padding: 7.5px 15px;font-size: 15px;width: 100px;">TodoList</a>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -50,21 +50,21 @@
     
                 <a href="" class="col-md-3 ">
                     <img class="pull-left img-responsive-rounded ml-2 mb-2" style="width: 90%; height:150px"
-                        src='/{{this.Avatar}}'>
+                        src='/{{this.avatar}}'>
                     <p class="post-author pt-3 text-center ">
-                        {{this.Author}}
+                        {{this.author}}
                     </p>
                 </a>
                 <div class="text post-body col-md-9 pt-2">
                     <Span class="d-inline-flex">
-                        <h2 style="width: 540px;"><a href="#">{{this.Title}}
+                        <h2 style="width: 540px;"><a href="#">{{this.title}}
                             </a></h2>
     
                     </Span>
     
-                    <h5 class="col-md-11">{{this.Content}} </h5>
+                    <h5 class="col-md-11">{{this.content}} </h5>
                     <h5><a href="#">Learn more... </a></h5>
-                    <div class="post-date"> Created {{this.Created_at}}</div>
+                    <div class="post-date"> Created {{this.created_at}}</div>
     
     
     
@@ -94,14 +94,14 @@
     {{#each Profile}}
        
         <div class="text-center"style="height: 80px;">
-            <h4>{{this.Name}}</h4>
+            <h4>{{this.name}}</h4>
             <p style="font-size: 12px;">Profile Description</p>
         </div>
         <div class="ml-1">
-            <p><b class="pr-2 mb-3">Email:</b> {{this.Email}}</p>
-            <p><b class="pr-2 mb-3">Occupation:</b> {{this.Occupation}}</p>
-            <p><b class="pr-2 mb-3">Skills:</b> {{this.Skills}}</p>
-            <p><b class="pr-2 mb-3">Hobbies:</b> {{this.Hobbies}}</p>
+            <p><b class="pr-2 mb-3">Email:</b> {{this.email}}</p>
+            <p><b class="pr-2 mb-3">Occupation:</b> {{this.occupation}}</p>
+            <p><b class="pr-2 mb-3">Skills:</b> {{this.skills}}</p>
+            <p><b class="pr-2 mb-3">Hobbies:</b> {{this.hobbies}}</p>
         </div>
         <div class="mb-4 pb-4">
             {{this.About}}

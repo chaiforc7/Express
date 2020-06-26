@@ -39,7 +39,7 @@ module.exports = function (passport) {
             let person = await prisma.users.findOne({
               where: {
                 Email: Email,
-              },//user follow table was not created yes because the follow table is actually a user, ok
+              },
                 include: {
                     followedBy: {
                         include: {

@@ -1,5 +1,0 @@
--- CREATE TABLE quotes (
--- 	id INT PRIMARY KEY,
---     Task VARCHAR(20),
---     Comment VARCHAR(100)
--- );

@@ -41,7 +41,7 @@ async function main(req, res, user) {
   const todos = await prisma.todo
     .findMany({
       where: {
-        Email: req.user.Email
+        email: req.user.Email
       }
     });
   
@@ -54,7 +54,7 @@ async function main(req, res, user) {
 
 let error = []
 // prisma get
-router.get("/Todo", ensureAuthenticated,  (req, res) => {
+router.get("/TodoList", ensureAuthenticated,  (req, res) => {
   main(req, res)
     .catch(e => {
       throw e
@@ -64,15 +64,12 @@ router.get("/Todo", ensureAuthenticated,  (req, res) => {
     })
 });
 
-
-//prisma Todo post
-//so can you take me to what and where the problem is
 async function Todo(req, res, user) {
   const { Task, Content } = req.body;
   await prisma.todo.create({
     data: {
-      Task: Task,
-      Content: Content,
+      task: Task,
+      content: Content,
       users:{
         connect:{
           Email:  req.user.Email
@@ -80,10 +77,10 @@ async function Todo(req, res, user) {
       }
     }
   });
- res.redirect('/user/Todo') 
+ res.redirect('/user/TodoList') 
 }
 
-router.post("/Todo", (req, res,next) => {  
+router.post("/TodoList", (req, res,next) => {  
  
   
   Todo(req, res)
@@ -106,7 +103,7 @@ async function Delete(req, res, profile) {
     }
   });
    
-  res.redirect("/user/Todo");
+  res.redirect("/user/TodoList");
 }
 
 //prisma delete
@@ -141,14 +138,6 @@ async function Bloget(req, res, user) {
      },
      })
   
-//   req.user.Likes.forEach(element => {
-//    console.log(element.Email, element.Postid)
-//  })
-  // await prisma.likes.findMany({
-  //   where: {
-  //     Postid: req.post.id
-  //   }
-  // })
   let Posts = [];
    req.user.following.forEach(element => {
      Posts.push(element.posts)
@@ -156,7 +145,7 @@ async function Bloget(req, res, user) {
  
       const Post = await prisma.posts.findMany({
         where: {
-          Email: req.user.Email
+          email: req.user.Email
         }
       })
       
@@ -165,7 +154,7 @@ async function Bloget(req, res, user) {
   let Poots = []
   Posts.forEach((element) => {
     element.forEach((item) => {
-      item.Created_at = moment(item.Created_at).fromNow();
+      item.created_at = moment(item.created_at).fromNow();
       if (req.user.Name == item.Author) {
         current_user = true;
       }
@@ -205,10 +194,10 @@ async function Blogpost(req, res, user) {
   const { Title, Content } = req.body;
   await prisma.posts.create({
     data: {
-      Title: Title,
-      Content: Content,
-      Avatar: req.user.Avatar,
-      Author: req.user.Name,
+      title: Title,
+      content: Content,
+      avatar: req.user.Avatar,
+      author: req.user.Name,
       users:{
         connect:{
           Email: req.user.Email
@@ -246,20 +235,20 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
   const Posts = await prisma.posts
     .findMany({
       where: {
-        Email: req.user.Email,
+        email: req.user.Email,
       }
     });
 
   Posts.forEach(item => {
-    item.Created_at = moment(item.Created_at).fromNow();
+    item.created_at = moment(item.created_at).fromNow();
   })
   
   const Profile = await prisma.profile.findMany({
     where: {
-      Email: req.user.Email,
+      email: req.user.Email,
     },
   });
-  console.log(req.user.Avatar)
+
   res.render("userProfile", {
     data: Posts,
     Profile: Profile,
@@ -268,6 +257,7 @@ router.get('/userProfile', ensureAuthenticated, async (req, res) => {
     Followers: req.user.followedBy.length,
     Following: req.user.following.length
   });
+  
 }); 
 
 router.get('/Editprofile', ensureAuthenticated, async(req, res, profile) => {
@@ -278,7 +268,7 @@ async function Profile(req, res, profile) {
   const { Name, Email, Occupation, Hobbies, Skills, About } = req.body;
   await prisma.profile.findOne({
     where: {
-      Email: Email
+      email: Email
     }
   })
     .then (async profile => {
@@ -298,12 +288,12 @@ async function Profile(req, res, profile) {
       else {
         await prisma.profile.create({
           data: {
-            Name: Name,
-            Email: Email,
-            Occupation: Occupation,
-            Hobbies: Hobbies,
-            Skills: Skills,
-            About: About
+            name: Name,
+            email: Email,
+            occupation: Occupation,
+            hobbies: Hobbies,
+            skills: Skills,
+            about: About
      },
    });
    res.redirect("/user/Blog");
@@ -342,20 +332,20 @@ router.get(`/Profile`, ensureAuthenticated, async (req, res) => {
   })
   const Posts = await prisma.posts.findMany({
     where: {
-      Email: req.session.Email,
+      email: req.session.Email,
     },
   });
 
   Posts.forEach((item) => {
-    item.Created_at = moment(item.Created_at).fromNow();
+    item.created_at = moment(item.created_at).fromNow();
   });
 
   const Profile = await prisma.profile.findMany({
     where: {
-      Email: req.session.Email,
+      email: req.session.Email,
     },
   });
-  console.log(Avatar);
+
   res.render("Profile", {
     data: Posts,
     Profile: Profile,
@@ -377,17 +367,17 @@ async function FollowAuthor(req, res) {
  
   const Profile = await prisma.profile.findMany({
     where: {
-      Email: req.session.Email
+      email: req.session.Email
     }
   })
   const Posts = await prisma.posts.findMany({
     where: {
-      Email: req.session.Email
+      email: req.session.Email
       
     }
   })
   Posts.forEach((item) => {
-    item.Created_at = moment(item.Created_at).fromNow();
+    item.created_at = moment(item.created_at).fromNow();
   });
    const user = await prisma.users.update({
     where: {
@@ -407,8 +397,6 @@ async function FollowAuthor(req, res) {
     Name = item.Name;
   });
 
-  console.log(req.session.Email)
-  
   res.render("profile", {
     data: Posts,
     Profile: Profile,
@@ -441,16 +429,16 @@ async function UnFollowAuthor(req, res) {
   });
   const Profile = await prisma.profile.findMany({
     where: {
-      Email: req.session.Email,
+      email: req.session.Email,
     },
   });
   const Posts = await prisma.posts.findMany({
     where: {
-      Email: req.session.Email,
+      email: req.session.Email,
     },
   });
   Posts.forEach((item) => {
-    item.Created_at = moment(item.Created_at).fromNow();
+    item.created_at = moment(item.created_at).fromNow();
   });
   const user = await prisma.users.update({
     where: {
@@ -499,10 +487,10 @@ async function Like(req, res) {
     where: {
       AND: [
         {
-          Postid: req.params.id
+          postid: req.params.id
         },
         {
-          Email: req.user.Email
+          email: req.user.Email
         }
       ]
 
@@ -517,18 +505,18 @@ async function Like(req, res) {
     });
     let CurrentLike;
     curentPost.forEach((element) => {
-      CurrentLike = element.PostLike - 1;
+      CurrentLike = element.postlike - 1;
       if (CurrentLike == 0) {
         CurrentLike = null;
       }
     });
-  
+    
     await prisma.posts.updateMany({
       where: {
           id: req.params.id,
         },
       data: {
-            PostLike: CurrentLike,
+            postlike: CurrentLike,
           },
     });
 
@@ -536,10 +524,10 @@ async function Like(req, res) {
       where: {
         AND: [
           {
-            Postid: req.params.id,
+            postid: req.params.id,
           },
           {
-            Email: req.user.Email,
+            email: req.user.Email,
           },
         ]
       }
@@ -568,7 +556,7 @@ async function Like(req, res) {
     });
     let CurrentLike;
     curentPost.forEach((element) => {
-      CurrentLike = element.PostLike + 1;
+      CurrentLike = element.postlike + 1;
     });
 
     await prisma.posts.updateMany({
@@ -576,7 +564,7 @@ async function Like(req, res) {
           id: req.params.id,
         },
           data: {
-            PostLike: CurrentLike,
+            postlike: CurrentLike,
           },
   
     });    
@@ -602,8 +590,8 @@ async function Comment(req, res) {
           Email: req.user.Email,
         },
       },
-      Postid: req.params.id,
-      Comment: req.body.Comment,
+      postid: req.params.id,
+      comment: req.body.Comment,
     },
   });
 

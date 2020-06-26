@@ -3,22 +3,22 @@
   "steps": [
     {
       "tag": "CreateSource",
-      "source": "mysql"
+      "source": "postgresql"
     },
     {
       "tag": "CreateArgument",
       "location": {
         "tag": "Source",
-        "source": "mysql"
+        "source": "postgresql"
       },
       "argument": "provider",
-      "value": "\"mysql\""
+      "value": "\"postgresql\""
     },
     {
       "tag": "CreateArgument",
       "location": {
         "tag": "Source",
-        "source": "mysql"
+        "source": "postgresql"
       },
       "argument": "url",
       "value": "env(\"DATABASE_URL\")"
@@ -30,14 +30,14 @@
     {
       "tag": "CreateField",
       "model": "comment",
-      "field": "Comment",
+      "field": "comment",
       "type": "String",
-      "arity": "Required"
+      "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "comment",
-      "field": "Email",
+      "field": "email",
       "type": "String",
       "arity": "Optional"
     },
@@ -87,7 +87,7 @@
     {
       "tag": "CreateField",
       "model": "comment",
-      "field": "Postid",
+      "field": "postid",
       "type": "String",
       "arity": "Optional"
     },
@@ -121,7 +121,7 @@
         "directive": "relation"
       },
       "argument": "fields",
-      "value": "[Email]"
+      "value": "[email]"
     },
     {
       "tag": "CreateArgument",
@@ -146,7 +146,7 @@
           "arguments": [
             {
               "name": "",
-              "value": "[Email]"
+              "value": "[email]"
             },
             {
               "name": "name",
@@ -164,9 +164,34 @@
     {
       "tag": "CreateField",
       "model": "likes",
-      "field": "id",
-      "type": "Int",
+      "field": "email",
+      "type": "String",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "likes",
+      "field": "postid",
+      "type": "String",
       "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "likes",
+      "field": "id",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "likes",
+          "field": "id"
+        },
+        "directive": "id"
+      }
     },
     {
       "tag": "CreateDirective",
@@ -191,21 +216,7 @@
         "directive": "default"
       },
       "argument": "",
-      "value": "autoincrement()"
-    },
-    {
-      "tag": "CreateField",
-      "model": "likes",
-      "field": "Email",
-      "type": "String",
-      "arity": "Optional"
-    },
-    {
-      "tag": "CreateField",
-      "model": "likes",
-      "field": "Postid",
-      "type": "String",
-      "arity": "Required"
+      "value": "cuid()"
     },
     {
       "tag": "CreateField",
@@ -237,7 +248,7 @@
         "directive": "relation"
       },
       "argument": "fields",
-      "value": "[Postid]"
+      "value": "[postid]"
     },
     {
       "tag": "CreateArgument",
@@ -283,7 +294,7 @@
         "directive": "relation"
       },
       "argument": "fields",
-      "value": "[Email]"
+      "value": "[email]"
     },
     {
       "tag": "CreateArgument",
@@ -300,50 +311,34 @@
       "value": "[Email]"
     },
     {
-      "tag": "CreateDirective",
-      "location": {
-        "path": {
-          "tag": "Model",
-          "model": "likes",
-          "arguments": [
-            {
-              "name": "",
-              "value": "[Email, Postid]"
-            }
-          ]
-        },
-        "directive": "unique"
-      }
-    },
-    {
       "tag": "CreateModel",
       "model": "posts"
     },
     {
       "tag": "CreateField",
       "model": "posts",
-      "field": "Author",
+      "field": "author",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "posts",
-      "field": "Avatar",
+      "field": "avatar",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "posts",
-      "field": "Content",
+      "field": "content",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "posts",
-      "field": "Created_at",
+      "field": "created_at",
       "type": "DateTime",
       "arity": "Optional"
     },
@@ -353,7 +348,7 @@
         "path": {
           "tag": "Field",
           "model": "posts",
-          "field": "Created_at"
+          "field": "created_at"
         },
         "directive": "default"
       }
@@ -365,7 +360,7 @@
         "path": {
           "tag": "Field",
           "model": "posts",
-          "field": "Created_at"
+          "field": "created_at"
         },
         "directive": "default"
       },
@@ -375,7 +370,7 @@
     {
       "tag": "CreateField",
       "model": "posts",
-      "field": "Email",
+      "field": "email",
       "type": "String",
       "arity": "Optional"
     },
@@ -425,7 +420,14 @@
     {
       "tag": "CreateField",
       "model": "posts",
-      "field": "Title",
+      "field": "postlike",
+      "type": "Int",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "posts",
+      "field": "title",
       "type": "String",
       "arity": "Optional"
     },
@@ -459,7 +461,7 @@
         "directive": "relation"
       },
       "argument": "fields",
-      "value": "[Email]"
+      "value": "[email]"
     },
     {
       "tag": "CreateArgument",
@@ -491,7 +493,7 @@
           "arguments": [
             {
               "name": "",
-              "value": "[Email]"
+              "value": "[email]"
             },
             {
               "name": "name",
@@ -509,14 +511,14 @@
     {
       "tag": "CreateField",
       "model": "profile",
-      "field": "About",
+      "field": "about",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "profile",
-      "field": "Email",
+      "field": "email",
       "type": "String",
       "arity": "Required"
     },
@@ -526,7 +528,7 @@
         "path": {
           "tag": "Field",
           "model": "profile",
-          "field": "Email"
+          "field": "email"
         },
         "directive": "id"
       }
@@ -534,28 +536,28 @@
     {
       "tag": "CreateField",
       "model": "profile",
-      "field": "Hobbies",
+      "field": "hobbies",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "profile",
-      "field": "Name",
+      "field": "name",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "profile",
-      "field": "Occupation",
+      "field": "occupation",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "profile",
-      "field": "Skills",
+      "field": "skills",
       "type": "String",
       "arity": "Optional"
     },
@@ -566,14 +568,14 @@
     {
       "tag": "CreateField",
       "model": "todo",
-      "field": "Content",
+      "field": "content",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
       "model": "todo",
-      "field": "Email",
+      "field": "email",
       "type": "String",
       "arity": "Optional"
     },
@@ -623,7 +625,7 @@
     {
       "tag": "CreateField",
       "model": "todo",
-      "field": "Task",
+      "field": "task",
       "type": "String",
       "arity": "Optional"
     },
@@ -657,7 +659,7 @@
         "directive": "relation"
       },
       "argument": "fields",
-      "value": "[Email]"
+      "value": "[email]"
     },
     {
       "tag": "CreateArgument",
@@ -682,7 +684,7 @@
           "arguments": [
             {
               "name": "",
-              "value": "[Email]"
+              "value": "[email]"
             },
             {
               "name": "name",
