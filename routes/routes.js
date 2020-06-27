@@ -161,7 +161,7 @@ async function BlogHome(req, res, user) {
 
   });
   Posts.sort(element => element.Created_at)
-  res.render('Blog', {
+  res.render('HomeBlog', {
     data: Posts
   })  
   req.session.is_Follow = false;
